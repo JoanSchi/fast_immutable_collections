@@ -419,8 +419,8 @@ abstract class IMap<K, V> // ignore: must_be_immutable
   /// toJsonK should return String, for safety key null is also implemented
   ///
   Object toJson(Object? Function(K) toJsonK, Object? Function(V) toJsonV) =>
-      unlock.map((key, value) => MapEntry(
-          key == null ? 'null' : (toJsonK(key) as String), toJsonV(value)));
+      unlock.map((key, value) =>
+          MapEntry(toJsonK(key)?.toString() ?? 'null', toJsonV(value)));
 
   /// See also: [ImmutableCollection], [ImmutableCollection.lockConfig],
   /// [ImmutableCollection.isConfigLocked],[flushFactor], [defaultConfig]
